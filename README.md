@@ -1,52 +1,41 @@
 # 🏥 PhysioCare AI - Database Project
 
-## 📌 Project Overview
+## 📌 Overview
 
-PhysioCare AI is a relational database system designed to support the management of a physiotherapy clinic. The system organizes and integrates information about patients, physiotherapists, clinical evaluations, diagnoses, treatment plans, therapy sessions, and AI-based recommendations to assist clinical decision-making.
+PhysioCare AI is a relational database project designed to support the management of a physiotherapy clinic.  
+The system organizes and integrates information about patients, physiotherapists, clinical evaluations, diagnoses, treatment plans, sessions, exercises, and AI-based recommendations.
 
-This project was developed as part of a university Database Systems course.
+This project was developed as part of a Database Systems course, with focus on:
 
----
-
-## 🎯 Objective
-
-The main objective of this project is to design and implement a structured relational database capable of efficiently managing the clinical workflow of a physiotherapy clinic, ensuring data integrity, normalization, and scalability.
-
----
-
-## 📊 System Scope
-
-The system covers the full clinical workflow, including:
-
-- Patient registration and management  
-- Physiotherapist registration and specialization control  
-- Clinical evaluations and diagnoses  
-- Therapeutic treatment planning  
-- Session scheduling and tracking  
-- Patient progress monitoring (evolution)  
-- Health insurance and authorization management  
-- Exercise prescription linked to treatment plans  
-- AI-based recommendations for clinical support  
+- Relational database modeling  
+- SQL implementation (DDL, DML, DQL)  
+- Data normalization  
+- Structured information systems design  
 
 ---
 
-## 🧱 Database Modeling
+## 🧱 Project Architecture
 
-The project was developed in three main stages:
+The system follows a layered database design approach:
 
-1. Conceptual Model (ER Diagram - DER)
-2. Logical Model (Relational Schema - DrawSQL)
-3. Physical Model (PostgreSQL Implementation)
+### 1️⃣ Conceptual Model (DER)
+Represents the high-level structure of the system, including:
+- Entities
+- Relationships
+- Cardinalities
+
+### 2️⃣ Logical Model
+Represents the relational schema, including:
+- Tables
+- Primary keys (PK)
+- Foreign keys (FK)
+- Attribute definitions and types
 
 ---
 
-## 🛠️ Technologies Used
+## 🗂️ Repository Structure
 
-- PostgreSQL (Database)
-- DrawSQL (Logical Modeling)
-- Draw.io (ER Diagram)
-- Git & GitHub (Version Control)
-
----
-
-## 📂 Repository Structure
+```text
+diagrams/   → ER diagram (DER) and Logical Model (images)
+docs/       → Project documentation (PDF)
+sql/        → SQL scripts (schema, data insertion, queries)
