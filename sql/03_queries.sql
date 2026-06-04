@@ -127,3 +127,63 @@ SELECT
     a.qtd_sessoes_usadas,
     (a.qtd_sessoes_autorizadas - a.qtd_sessoes_usadas) AS sessoes_restantes
 FROM autorizacao_atendimento a;
+
+------------------------------------------------------------
+-- ETAPA 3 DO PROJETO - PHYSIOCARE AI
+-- CONSULTAS AVANÇADAS (SUBQUERIES, JOINS E AGREGAÇÕES)
+------------------------------------------------------------
+
+-- Pacientes com mais de uma avaliação
+-- Mostra pacientes que passaram por múltiplas avaliações clínicas
+SELECT p.nome, COUNT(a.id_avaliacao) AS total_avaliacoes
+FROM paciente p
+JOIN avaliacao a ON p.id_paciente = a.id_paciente
+GROUP BY p.nome
+HAVING COUNT(a.id_avaliacao) > 1;
+
+
+-- Subquery: Pacientes com plano terapêutico ativo
+-- Retorna pacientes que possuem plano terapêutico em andamento
+SELECT nome
+FROM paciente
+WHERE id_paciente IN (
+    SELECT id_paciente
+    FROM plano_terapeutico
+    WHERE status_plano = 'Ativo'
+);
+
+
+-- Fisioterapeutas com mais sessões realizadas
+-- Lista os profissionais ordenados pela quantidade de atendimentos
+SELECT f.nome, COUNT(s.id_sessao) AS total_sessoes
+FROM fisioterapeuta f
+JOIN sessao s ON f.id_fisioterapeuta = s.id_fisioterapeuta
+GROUP BY f.nome
+ORDER BY total_sessoes DESC;
+
+
+-- Subquery: Diagnósticos de maior severidade
+-- Seleciona os diagnósticos mais críticos registrados no sistema
+SELECT *
+FROM diagnostico
+WHERE grau_severidade = (
+    SELECT MAX(grau_severidade)
+    FROM diagnostico
+);
+
+
+-- Pacientes sem sessões registradas
+-- Identifica pacientes que ainda não passaram por atendimento
+SELECT nome
+FROM paciente
+WHERE id_paciente NOT IN (
+    SELECT id_paciente
+    FROM sessao
+);
+
+
+-- Evolução média dos pacientes (comparação antes e depois)
+-- Mostra casos com melhora clínica registrada
+SELECT id_sessao, nivel_dor_antes, nivel_dor_depois, progresso_observado
+FROM evolucao
+WHERE nivel_dor_depois < nivel_dor_antes;
